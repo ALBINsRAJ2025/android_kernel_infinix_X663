@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Extracted from the stock Linux 4.19.191 kernel; see NOTICE.
 #
 # Automatically generated file; DO NOT EDIT.
 # Linux/arm64 4.19.191 Kernel Configuration
