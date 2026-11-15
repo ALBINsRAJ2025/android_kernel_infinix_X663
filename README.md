@@ -99,8 +99,8 @@ and the resulting `Image.gz`/`dtb` can replace the files here without touching
   (`/vendor/lib/modules`, 23 files).  They are installed from
   `vendor/infinix/X663/proprietary` into the source-built vendor partition;
   no `vendor.img` is used.
-* Every file in this tree was re-verified against the stock SP Flash Tool
-  package: `Image.gz` and `dtb/mt6768.dtb` are byte-identical to the
+* Every file in this tree was re-verified against the stock
+  firmware: `Image.gz` and `dtb/mt6768.dtb` are byte-identical to the
   components `unpack_bootimg` extracts from `boot.img`, and `dtbo.img` is
   byte-identical to the first 49,472 bytes of the package's 8 MiB `dtbo.img`.
   The package contains no kernel source and no kernel configuration blob, so
