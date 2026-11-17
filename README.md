@@ -7,22 +7,23 @@ the stock binaries.
 | File | Contents |
 | --- | --- |
 | `Image.gz` | Stock kernel, `4.19.191-g20c2dd72f5fd-dirty` (10,855,427 B) |
-| `dtb/mt6768.dtb` | MTK `dt_table` container from the stock boot image (119,464 B; FDT at offset 64, `0xd00dfeed`) |
+| `dtb/mt6768.dtb` | Raw FDT from the stock boot image (119,400 B); the boot field is a 119,464 B `dt_table` around it |
 | `dtbo.img` | Unsigned DTBO table (49,472 B); the build pads and signs it to the 8 MiB partition |
 | `defconfig` | Stock kernel config, GPL-2.0-only |
 
 ## File names vs the unpacked boot image
 
 `unpack_bootimg` yields `kernel`, `dtb` and `ramdisk`; this tree uses the
-Android build-system names. The bytes are identical:
+Android build-system names. The `dtb` field is a `dt_table` container
+(32 header + 32 entry bytes) whose single entry is the FDT kept here:
 
 | unpack_bootimg | This tree | Bytes | SHA-256 |
 | --- | --- | ---: | --- |
 | `kernel` | `Image.gz` | 10,855,427 | `2a9dc96352c99a9462935f0024b53696a3f087320596a412125a41a997be72c5` |
-| `dtb` | `dtb/mt6768.dtb` | 119,464 | `6265c98f0439f053e1b27358d937b9e432f2f38fad93fcae8b2846861a750815` |
+| `dtb` entry 0 | `dtb/mt6768.dtb` | 119,400 | `5dbaf472e07ee93c527404a4c5d8964f17a2f639d196ccf81eb7729f007d2d2c` |
 
 `Image.gz` is required by `BOARD_KERNEL_IMAGE_NAME`; the DTB directory is
-concatenated by `BOARD_PREBUILT_DTBIMAGE_DIR`.
+turned back into a table by `BOARD_PREBUILT_DTBIMAGE_DIR`.
 
 ## Building
 
